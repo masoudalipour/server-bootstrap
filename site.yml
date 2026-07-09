@@ -1,0 +1,7 @@
+---
+- name: Configure server
+  hosts: web
+  become: true
+
+  roles:
+    - bootstrap

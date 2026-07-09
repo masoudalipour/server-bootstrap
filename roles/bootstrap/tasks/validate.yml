@@ -1,0 +1,7 @@
+---
+- name: Ensure operating system is Debian
+  ansible.builtin.assert:
+    that:
+      - ansible_facts['distribution'] == "Debian"
+      - ansible_facts['distribution_major_version'] == "12"
+    fail_msg: "This project currently supports Debian 12 only."

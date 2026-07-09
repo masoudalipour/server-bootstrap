@@ -1,0 +1,9 @@
+---
+- name: Validate target system
+  ansible.builtin.import_tasks: validate.yml
+
+- name: Update operating system
+  ansible.builtin.import_tasks: update.yml
+
+- name: Install common packages
+  ansible.builtin.import_tasks: packages.yml

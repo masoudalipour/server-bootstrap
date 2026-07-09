@@ -1,0 +1,28 @@
+# Ansible
+*.retry
+
+# Inventory
+inventory/hosts.ini
+
+# Variables
+group_vars/all.yml
+host_vars/
+
+# Secrets
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+.env
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Python
+__pycache__/
