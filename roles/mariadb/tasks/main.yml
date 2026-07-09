@@ -1,0 +1,12 @@
+---
+- name: Install MariaDB packages
+  ansible.builtin.apt:
+    name: "{{ mariadb_packages }}"
+    state: present
+  notify: Restart MariaDB
+
+- name: Enable MariaDB
+  ansible.builtin.service:
+    name: "{{ mariadb_service }}"
+    enabled: true
+    state: started
