@@ -1,0 +1,5 @@
+- name: Ensure hostname resolves locally
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: '^127\.0\.1\.1'
+    line: "127.0.1.1 {{ ansible_facts.hostname }}"

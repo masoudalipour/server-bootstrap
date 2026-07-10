@@ -2,6 +2,12 @@
 - name: Validate target system
   ansible.builtin.import_tasks: validate.yml
 
+- name: Configure hostname
+  ansible.builtin.import_tasks: hostname.yml
+
+- name: Configure timezone
+  ansible.builtin.import_tasks: timezone.yml
+
 - name: Update operating system
   ansible.builtin.import_tasks: update.yml
 
