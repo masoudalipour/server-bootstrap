@@ -1,0 +1,15 @@
+---
+- name: Create WordPress database
+  ansible.mysql.mysql_db:
+    name: "{{ app_db_name }}"
+    state: present
+    login_unix_socket: /run/mysqld/mysqld.sock
+
+- name: Create WordPress database user
+  ansible.mysql.mysql_user:
+    name: "{{ app_db_user }}"
+    password: "{{ app_db_password }}"
+    host: localhost
+    priv: "{{ app_db_name }}.*:ALL"
+    state: present
+    login_unix_socket: /run/mysqld/mysqld.sock

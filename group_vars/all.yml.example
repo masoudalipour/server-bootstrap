@@ -1,0 +1,5 @@
+app_db_name: wordpress
+app_db_user: wordpress
+app_db_password: change_me
+
+server_timezone: UTC

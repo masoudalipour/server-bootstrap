@@ -1,12 +1,6 @@
 ---
-- name: Install MariaDB packages
-  ansible.builtin.apt:
-    name: "{{ mariadb_packages }}"
-    state: present
-  notify: Restart MariaDB
+- name: Install MariaDB
+  ansible.builtin.import_tasks: install.yml
 
-- name: Enable MariaDB
-  ansible.builtin.service:
-    name: "{{ mariadb_service }}"
-    enabled: true
-    state: started
+- name: Configure WordPress database
+  ansible.builtin.import_tasks: database.yml
