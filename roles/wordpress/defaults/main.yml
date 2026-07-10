@@ -1,7 +1,7 @@
 ---
 wordpress_version: latest
 
-wordpress_install_dir: /var/www/wordpress
+wordpress_install_dir: /var/www
 
 wordpress_download_url: "https://wordpress.org/{{ wordpress_version }}.tar.gz"
 

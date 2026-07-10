@@ -1,0 +1,32 @@
+---
+- name: Set WordPress owner
+  ansible.builtin.file:
+    path: "{{ wordpress_install_dir }}"
+    owner: www-data
+    group: www-data
+    recurse: true
+
+- name: Set directory permissions
+  ansible.builtin.command:
+    cmd: find {{ wordpress_install_dir }} -type d -exec chmod 755 {} \;
+  changed_when: false
+
+- name: Set file permissions
+  ansible.builtin.command:
+    cmd: find {{ wordpress_install_dir }} -type f -exec chmod 644 {} \;
+  changed_when: false
+
+- name: Secure wp-config.php
+  ansible.builtin.file:
+    path: "{{ wordpress_install_dir }}/wp-config.php"
+    owner: www-data
+    group: www-data
+    mode: "0640"
+
+- name: Ensure uploads directory exists
+  ansible.builtin.file:
+    path: "{{ wordpress_install_dir }}/wp-content/uploads"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: "0755"

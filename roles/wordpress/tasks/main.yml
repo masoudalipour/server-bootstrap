@@ -8,5 +8,5 @@
 # - name: Configure Apache virtual host
 #   ansible.builtin.import_tasks: apache.yml
 
-# - name: Set permissions
-#   ansible.builtin.import_tasks: permissions.yml
+- name: Configure permissions
+  ansible.builtin.import_tasks: permissions.yml
