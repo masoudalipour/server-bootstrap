@@ -1,0 +1,39 @@
+---
+- name: Download WordPress archive
+  ansible.builtin.get_url:
+    url: "{{ wordpress_download_url }}"
+    dest: "{{ wordpress_archive }}"
+    mode: "0644"
+
+- name: Extract WordPress archive
+  ansible.builtin.unarchive:
+    src: "{{ wordpress_archive }}"
+    dest: "{{ wordpress_extract_dir }}"
+    remote_src: true
+
+- name: Create WordPress directory
+  ansible.builtin.file:
+    path: "{{ wordpress_install_dir }}"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: "0755"
+
+- name: Copy WordPress files
+  ansible.builtin.copy:
+    src: "{{ wordpress_extract_dir }}/wordpress/"
+    dest: "{{ wordpress_install_dir }}/"
+    remote_src: true
+    owner: www-data
+    group: www-data
+    mode: preserve
+
+- name: Remove downloaded archive
+  ansible.builtin.file:
+    path: "{{ wordpress_archive }}"
+    state: absent
+
+- name: Remove extracted directory
+  ansible.builtin.file:
+    path: "{{ wordpress_extract_dir }}/wordpress"
+    state: absent

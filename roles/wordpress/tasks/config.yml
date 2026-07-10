@@ -1,0 +1,8 @@
+---
+- name: Create wp-config.php
+  ansible.builtin.template:
+    src: wp-config.php.j2
+    dest: "{{ wordpress_install_dir }}/wp-config.php"
+    owner: www-data
+    group: www-data
+    mode: "0640"
