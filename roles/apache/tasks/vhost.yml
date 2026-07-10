@@ -1,0 +1,28 @@
+---
+- name: Create Apache VirtualHost
+  ansible.builtin.template:
+    src: wordpress.conf.j2
+    dest: /etc/apache2/sites-available/wordpress.conf
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Enable rewrite module
+  ansible.builtin.command: a2enmod rewrite
+  register: apache_rewrite_result
+  changed_when: "'already enabled' not in apache_rewrite_result.stdout"
+
+- name: Disable default site
+  ansible.builtin.command: a2dissite 000-default.conf
+  register: apache_default_site
+  changed_when: "'disabled' in apache_default_site.stdout"
+
+- name: Enable WordPress site
+  ansible.builtin.command: a2ensite wordpress.conf
+  register: apache_wordpress_site
+  changed_when: "'enabled' in apache_wordpress_site.stdout"
+
+- name: Reload Apache
+  ansible.builtin.service:
+    name: apache2
+    state: reloaded

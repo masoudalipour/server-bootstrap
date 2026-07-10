@@ -9,3 +9,6 @@
     name: apache2
     enabled: true
     state: started
+
+- name: Configure VirtualHost
+  ansible.builtin.import_tasks: vhost.yml
