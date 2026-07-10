@@ -1,0 +1,8 @@
+---
+wordpress_version: latest
+
+wordpress_install_dir: /var/www/html
+
+wordpress_archive: /tmp/wordpress.tar.gz
+
+wordpress_download_url: https://wordpress.org/latest.tar.gz

@@ -1,0 +1,18 @@
+---
+- name: Download WordPress
+  ansible.builtin.import_tasks: download.yml
+
+- name: Configure database
+  ansible.builtin.import_tasks: database.yml
+
+- name: Configure WordPress
+  ansible.builtin.import_tasks: config.yml
+
+- name: Restore wp-content
+  ansible.builtin.import_tasks: content.yml
+
+- name: Configure Apache virtual host
+  ansible.builtin.import_tasks: apache.yml
+
+- name: Set permissions
+  ansible.builtin.import_tasks: permissions.yml
