@@ -1,0 +1,6 @@
+---
+- name: Install Certbot
+  ansible.builtin.import_tasks: install.yml
+
+- name: Obtain Let's Encrypt certificate
+  ansible.builtin.import_tasks: certificate.yml

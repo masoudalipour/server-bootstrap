@@ -1,0 +1,3 @@
+---
+certbot_primary_domain: "{{ server_name }}"
+certbot_email: "{{ letsencrypt_email | default('') }}"

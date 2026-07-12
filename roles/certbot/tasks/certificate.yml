@@ -1,0 +1,18 @@
+---
+- name: Check existing certificate
+  ansible.builtin.stat:
+    path: "/etc/letsencrypt/live/{{ certbot_primary_domain }}/fullchain.pem"
+  register: certbot_certificate
+
+- name: Obtain Let's Encrypt certificate
+  ansible.builtin.command:
+    cmd: >
+      certbot --apache
+      --non-interactive
+      --agree-tos
+      --email {{ certbot_email }}
+      --redirect
+      -d {{ certbot_primary_domain }}
+      -d www.{{ certbot_primary_domain }}
+    creates: "/etc/letsencrypt/live/{{ certbot_primary_domain }}/fullchain.pem"
+  when: not certbot_certificate.stat.exists
