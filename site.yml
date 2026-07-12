@@ -10,3 +10,7 @@
     - mariadb
     - firewall
     - wordpress
+    - certbot
+    - ssh
+    - fail2ban
+    - unattended_upgrades
