@@ -5,8 +5,5 @@
 - name: Configure WordPress
   ansible.builtin.import_tasks: config.yml
 
-# - name: Configure Apache virtual host
-#   ansible.builtin.import_tasks: apache.yml
-
 - name: Configure permissions
   ansible.builtin.import_tasks: permissions.yml

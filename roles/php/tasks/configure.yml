@@ -1,0 +1,9 @@
+---
+- name: Configure PHP for WordPress
+  ansible.builtin.template:
+    src: wordpress.ini.j2
+    dest: /etc/php/8.2/apache2/conf.d/99-wordpress.ini
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart Apache

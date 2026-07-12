@@ -1,0 +1,17 @@
+---
+- name: Configure Apache security
+  ansible.builtin.template:
+    src: security.conf.j2
+    dest: /etc/apache2/conf-available/security.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Reload Apache
+
+- name: Enable security configuration
+  ansible.builtin.command:
+    cmd: a2enconf security
+  register: apache_security_conf
+  changed_when: "'already enabled' not in apache_security_conf.stderr"
+  failed_when: false
+  notify: Reload Apache

@@ -9,6 +9,6 @@
 - name: Extract WordPress archive
   ansible.builtin.unarchive:
     src: "{{ wordpress_archive }}"
-    dest: "{{ wordpress_install_dir }}"
+    dest: /var/www
     remote_src: true
     creates: "{{ wordpress_install_dir }}/wp-settings.php"

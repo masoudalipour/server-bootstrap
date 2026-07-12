@@ -12,3 +12,9 @@
 
 - name: Configure VirtualHost
   ansible.builtin.import_tasks: vhost.yml
+
+- name: Configure Apache security
+  ansible.builtin.import_tasks: hardening.yml
+
+- name: Configure security headers
+  ansible.builtin.import_tasks: headers.yml

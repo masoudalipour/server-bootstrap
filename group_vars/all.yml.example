@@ -3,3 +3,6 @@ app_db_user: wordpress
 app_db_password: change_me
 
 server_timezone: UTC
+
+server_name: example.com
+certbot_email: admin@example.com

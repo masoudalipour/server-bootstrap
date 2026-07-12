@@ -1,0 +1,23 @@
+---
+- name: Configure Apache security headers
+  ansible.builtin.template:
+    src: headers.conf.j2
+    dest: /etc/apache2/conf-available/headers.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Reload Apache
+
+- name: Enable headers module
+  ansible.builtin.command:
+    cmd: a2enmod headers
+  register: apache_headers_module
+  changed_when: "'already enabled' not in apache_headers_module.stdout"
+  notify: Reload Apache
+
+- name: Enable headers configuration
+  ansible.builtin.command:
+    cmd: a2enconf headers
+  register: apache_headers_conf
+  changed_when: "'already enabled' not in apache_headers_conf.stdout"
+  notify: Reload Apache
